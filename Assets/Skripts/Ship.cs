@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
+// СЃРєСЂРёРїС‚ РѕС‚РІРµС‡Р°РµС‚ Р·Р° РґРІРёР¶РµРЅРёРµ РєРѕСЂР°Р±Р»СЏ Рё РµРіРѕ СѓРЅРёС‡С‚РѕР¶РµРЅРёРµ
     [SerializeField]
     GameObject HUD;
-
-    // скрипт отвечает за движение корабля и его уничтожение
     Rigidbody2D rb2d;
     Vector2 thrustDirection= new Vector2(1,0);
     const int ThrustForce = 10;
     const int rotateDegreesPerSecond = 180;
     [SerializeField]
     GameObject prefabBullet;
-    // доп поле для поддержки метода невыхода корабля за пределы камеры
+    // РґРѕРї РїРѕР»Рµ РґР»СЏ РїРѕРґРґРµСЂР¶РєРё РјРµС‚РѕРґР° РЅРµРІС‹С…РѕРґР° РєРѕСЂР°Р±Р»СЏ Р·Р° РїСЂРµРґРµР»С‹ РєР°РјРµСЂС‹
     float circleRadius;
 
     // Start is called before the first frame update
@@ -30,7 +29,7 @@ public class Ship : MonoBehaviour
         float rotationInput= Input.GetAxis("Rotate");
         if (rotationInput!=0)
         {
-            // рассчет величины вращения и применение вращения
+            // СЂР°СЃСЃС‡РµС‚ РІРµР»РёС‡РёРЅС‹ РІСЂР°С‰РµРЅРёСЏ Рё РїСЂРёРјРµРЅРµРЅРёРµ РІСЂР°С‰РµРЅРёСЏ
             float rotationAmount = rotateDegreesPerSecond * Time.deltaTime;
             if (rotationInput < 0)
             {
@@ -38,12 +37,12 @@ public class Ship : MonoBehaviour
             }
             transform.Rotate(Vector3.forward, rotationAmount);
 
-            // изменяет направление движения в соответствии с вращением корабля
+            // РёР·РјРµРЅСЏРµС‚ РЅР°РїСЂР°РІР»РµРЅРёРµ РґРІРёР¶РµРЅРёСЏ РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ РІСЂР°С‰РµРЅРёРµРј РєРѕСЂР°Р±Р»СЏ
             float zRotation = transform.eulerAngles.z * Mathf.Deg2Rad;
             thrustDirection.x = Mathf.Cos(zRotation);
             thrustDirection.y = Mathf.Sin(zRotation);
         }
-        // Выстрел пуль
+        // Р’С‹СЃС‚СЂРµР» РїСѓР»СЊ
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             AudioManager.Play(AudioClipName.PlayerShot);
@@ -52,7 +51,7 @@ public class Ship : MonoBehaviour
         }
     }
 
-    // Дает толчок объекту , при активации оси "Thrust"" 
+    // Р”Р°РµС‚ С‚РѕР»С‡РѕРє РѕР±СЉРµРєС‚Сѓ , РїСЂРё Р°РєС‚РёРІР°С†РёРё РѕСЃРё "Thrust"
     private void FixedUpdate()
     {
         if (Input.GetAxis("Thrust")!=0)
@@ -64,7 +63,7 @@ public class Ship : MonoBehaviour
     void OnCollisionEnter2D(Collision2D myCollision)
     {
         
-        // если объект столкновения имеет тэг "Asteroid" - то взрыв корабля,остановка таймера жизни,и звуковой эффект
+        // РµСЃР»Рё РѕР±СЉРµРєС‚ СЃС‚РѕР»РєРЅРѕРІРµРЅРёСЏ РёРјРµРµС‚ С‚СЌРі "Asteroid" - С‚Рѕ РІР·СЂС‹РІ РєРѕСЂР°Р±Р»СЏ,РѕСЃС‚Р°РЅРѕРІРєР° С‚Р°Р№РјРµСЂР° Р¶РёР·РЅРё,Рё Р·РІСѓРєРѕРІРѕР№ СЌС„С„РµРєС‚
         if (myCollision.gameObject.CompareTag("Asteroid"))
         {
             AudioManager.Play(AudioClipName.PlayerDeath);
