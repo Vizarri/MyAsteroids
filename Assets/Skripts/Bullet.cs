@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     const float maxSecondsBulletsLife = 2;
     Timer deathTimer;
 
-    //метод задает движение пули
+    //РјРµС‚РѕРґ Р·Р°РґР°РµС‚ РґРІРёР¶РµРЅРёРµ РїСѓР»Рё
     public void ApplyForce(Vector2 direction)
     {
         const int force = 500;
