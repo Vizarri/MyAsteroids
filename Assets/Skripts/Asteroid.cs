@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Asteroid : MonoBehaviour
-{ // Скрипт рандомного движения объекта и рандомного выбора спрайта
+{ // РЎРєСЂРёРїС‚ СЂР°РЅРґРѕРјРЅРѕРіРѕ РґРІРёР¶РµРЅРёСЏ РѕР±СЉРµРєС‚Р° Рё СЂР°РЅРґРѕРјРЅРѕРіРѕ РІС‹Р±РѕСЂР° СЃРїСЂР°Р№С‚Р°
     const float MinImpulseForce = 1f;
     const float MaxImpulseForce = 3f;
     float angle;
@@ -16,7 +16,7 @@ public class Asteroid : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {        //рандомное назначение префаба для астероида 
+    {        //СЂР°РЅРґРѕРјРЅРѕРµ РЅР°Р·РЅР°С‡РµРЅРёРµ РїСЂРµС„Р°Р±Р° РґР»СЏ Р°СЃС‚РµСЂРѕРёРґР° 
         SpriteRenderer sprite = GetComponent<SpriteRenderer>();
         int random_sprite = Random.Range(0, 3);
         if (random_sprite==0)
@@ -61,7 +61,7 @@ public class Asteroid : MonoBehaviour
     void OnCollisionEnter2D(Collision2D myCollision)
     {
         
-        // если объект столкновения имеет тэг "Bullet" и астероид полноразмерный, то разбивка остероида на 2 
+       // РµСЃР»Рё РѕР±СЉРµРєС‚ СЃС‚РѕР»РєРЅРѕРІРµРЅРёСЏ РёРјРµРµС‚ С‚СЌРі "Bullet" Рё Р°СЃС‚РµСЂРѕРёРґ РїРѕР»РЅРѕСЂР°Р·РјРµСЂРЅС‹Р№, С‚Рѕ СЂР°Р·Р±РёРІРєР° РѕСЃС‚РµСЂРѕРёРґР° РЅР° 2 
         if (myCollision.gameObject.CompareTag("Bullet"))
         {
             AudioManager.Play(AudioClipName.AsteroidHit);
