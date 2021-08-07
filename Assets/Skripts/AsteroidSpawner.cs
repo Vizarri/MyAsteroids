@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AsteroidSpawner : MonoBehaviour
-{   // скрипт создает астероиды , работает в связке со скриптом Asteroid
+{   // СЃРєСЂРёРїС‚ СЃРѕР·РґР°РµС‚ Р°СЃС‚РµСЂРѕРёРґС‹ , СЂР°Р±РѕС‚Р°РµС‚ РІ СЃРІСЏР·РєРµ СЃРѕ СЃРєСЂРёРїС‚РѕРј Asteroid
     [SerializeField]
     GameObject prefabAsteroid;
 
@@ -13,32 +13,32 @@ public class AsteroidSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // высота и ширина экрана
+        // РІС‹СЃРѕС‚Р° Рё С€РёСЂРёРЅР° СЌРєСЂР°РЅР°
         float screenWidth = ScreenUtils.ScreenRight - ScreenUtils.ScreenLeft;
         float screenHeight = ScreenUtils.ScreenTop - ScreenUtils.ScreenBottom;
 
-        // запись значения префаба астероида
+        // Р·Р°РїРёСЃСЊ Р·РЅР°С‡РµРЅРёСЏ РїСЂРµС„Р°Р±Р° Р°СЃС‚РµСЂРѕРёРґР°
         GameObject asteroid = GameObject.Instantiate(prefabAsteroid);
         float radius_asteroid = prefabAsteroid.GetComponent<CircleCollider2D>().radius;
         Destroy(asteroid);
 
 
-        //Астероид летит с нижнего края экрана наверх
+        //РђСЃС‚РµСЂРѕРёРґ Р»РµС‚РёС‚ СЃ РЅРёР¶РЅРµРіРѕ РєСЂР°СЏ СЌРєСЂР°РЅР° РЅР°РІРµСЂС…
         asteroid = GameObject.Instantiate(prefabAsteroid);
         Asteroid script = asteroid.GetComponent<Asteroid>();
         script.Initialize(Direction.Up, new Vector3(ScreenUtils.ScreenLeft + (screenWidth / 2), ScreenUtils.ScreenBottom - radius_asteroid));
 
-        //Астероид летит с верхнего края экрана вниз
+        //РђСЃС‚РµСЂРѕРёРґ Р»РµС‚РёС‚ СЃ РІРµСЂС…РЅРµРіРѕ РєСЂР°СЏ СЌРєСЂР°РЅР° РІРЅРёР·
         asteroid = GameObject.Instantiate(prefabAsteroid);
         script = asteroid.GetComponent<Asteroid>();
         script.Initialize(Direction.Down, new Vector3(ScreenUtils.ScreenLeft + (screenWidth / 2), ScreenUtils.ScreenTop - radius_asteroid));
 
-        //Астероид летит с левого края экрана на право
+        //РђСЃС‚РµСЂРѕРёРґ Р»РµС‚РёС‚ СЃ Р»РµРІРѕРіРѕ РєСЂР°СЏ СЌРєСЂР°РЅР° РЅР° РїСЂР°РІРѕ
         asteroid = GameObject.Instantiate(prefabAsteroid);
         script = asteroid.GetComponent<Asteroid>();
         script.Initialize(Direction.Right, new Vector3(ScreenUtils.ScreenLeft-radius_asteroid, ScreenUtils.ScreenTop - (screenHeight / 2)));
 
-        //Астероид летит с правого края экрана на лево
+        //РђСЃС‚РµСЂРѕРёРґ Р»РµС‚РёС‚ СЃ РїСЂР°РІРѕРіРѕ РєСЂР°СЏ СЌРєСЂР°РЅР° РЅР° Р»РµРІРѕ
         asteroid = GameObject.Instantiate(prefabAsteroid);
         script = asteroid.GetComponent<Asteroid>();
         script.Initialize(Direction.Left, new Vector3(ScreenUtils.ScreenRight-radius_asteroid, ScreenUtils.ScreenTop - (screenHeight / 2)));
